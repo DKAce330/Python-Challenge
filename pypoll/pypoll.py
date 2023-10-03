@@ -7,7 +7,7 @@ total = 0
 can=[] #Candidate List
 VoteP = [] #Percentage of votes
 VoteT = [] #Total votes each candidate
-Win = ["",0] #Winner of election
+Win = "" #Winner of election
 
 
 
@@ -40,7 +40,9 @@ for votes in VoteT:
     VoteP.append(pcnt)
 
 #Determine winner
-
+    Win = max(VoteT)
+    index = VoteT.index(Win)
+    Win= can[index]
 
 #print the final analysis
 print(f"Total Votes: " , total)
@@ -52,13 +54,14 @@ print(f"Winner: ", Win)
 print("------------------------------------------------------------")
 
 #export to .txt
-with open("output.txt", 'w') as output:
+output2=os.path.join('..', 'pypoll','output2.txt')
+with open(output2, 'w') as output:
     output.write("Election Results\n")
     output.write("------------------------------------------------------------\n")
     output.write(f"Total Votes: {total}\n")
     output.write("------------------------------------------------------------\n") 
     for i in range(len(can)):
-        output.write(f"{can[i]}: {str(VoteP[i])} ({str(VoteT[i])})")
+        output.write(f"{can[i]}: {str(VoteP[i])} ({str(VoteT[i])})\n")
     output.write("------------------------------------------------------------\n")    
-    output.write(f"\n")
+    output.write(f"Winner: {Win}\n")
     output.write("------------------------------------------------------------\n")    
