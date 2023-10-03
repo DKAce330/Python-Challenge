@@ -13,6 +13,7 @@ chgm = [] #month of change
 inc = ["", 0] #largest increase
 dec = ["", 0] #largest decrease
 
+
 #directory
 csvpath=os.path.join('..', 'pybank','resources','budget_data.csv')
 print("Financial analysis")
@@ -52,5 +53,15 @@ with open(csvpath) as csvfile:
 print(f"Total Months: ",  mths)
 print(f"Total: " , total)
 print(f"Average change: " , chgavg)
-print(f"Greatest Increase in Profits:" , inc)
+print(f"Greatest Increase in Profits: " , inc)
 print(f"Greatest Decrease in Profits: " , dec)
+
+#export to .txt
+with open("output.txt", 'w') as output:
+    output.write("Financial analysis\n")
+    output.write("------------------------------------------------------------\n")
+    output.write(f"Total Months: {mths}\n")
+    output.write(f"Total: {total}\n")
+    output.write(f"Average change: {chgavg}\n")
+    output.write(f"Greatest Increase in Profits: {inc}\n")
+    output.write(f"Greatest Decrease in Profits: {dec}\n")
